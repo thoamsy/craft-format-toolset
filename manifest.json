@@ -1,0 +1,10 @@
+{
+  "id": "do.craft.thoamsy.number-format",
+  "name": "Number Format",
+  "fileName": "number-format",
+  "author": "Thomas Yang",
+  "author-email": "c6swift@icloud.com",
+  "description": "Format Number with comma. Like change the 1000 to 1,000",
+  "api": "0.0.4",
+  "main": "index.html"
+}
