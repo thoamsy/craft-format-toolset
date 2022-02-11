@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build": "webpack --mode=production",
-    "dev": "webpack serve --mode=development"
+    "build": "tailwindcss -i ./src/style.css -o ./src/index.css --minify && webpack --mode=production",
+    "dev": "tailwindcss -i ./src/style.css -o ./src/index.css --watch && webpack serve --mode=development"
   },
   "author": "",
   "license": "ISC",

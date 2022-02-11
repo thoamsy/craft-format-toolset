@@ -1,7 +1,7 @@
 {
   "id": "do.craft.thoamsy.number-format",
-  "name": "Number Format",
-  "fileName": "number-format",
+  "name": "Format Toolset",
+  "fileName": "format-toolset",
   "author": "Thomas Yang",
   "author-email": "c6swift@icloud.com",
   "description": "Format Number with comma. Like change the 1000 to 1,000",
