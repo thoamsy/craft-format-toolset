@@ -52,7 +52,7 @@ module.exports = (env, argv) => {
     plugins: [
       new CraftExtensionApiPlugin(),
       new HtmlWebpackPlugin({
-        inject: isProd ? 'body' : false,
+        inject: 'body',
         template: path.resolve(__dirname, 'src/index.html'),
         chunks: ['app'],
       }),
