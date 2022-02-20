@@ -52,43 +52,51 @@ const App: React.FC<{}> = () => {
 
   return (
     <section className="container mx-auto px-4 py-2">
-      <ul className="flex flex-col my-8">
-        <button
-          className="my-2 p-2 w-full rounded bg-green-500 hover:bg-green-700 text-white"
-          onClick={formatChinese}
-        >
-          Format Space 🕶
-        </button>
-        <button
-          className="my-2 p-2 w-full rounded bg-green-500 hover:bg-green-700 text-white"
-          onClick={formatNumber}
-        >
-          Format Number 🔧
-        </button>
-        <div className="flex flex-col gap-2">
-          <Checkbox
-            desc="在中英文之间添加空格"
-            onChange={onChangeConfigWithName('space')}
-            checked={config.space}
+      <div className="my-8">
+        <div className="flex gap-2">
+          <button
+            className="my-2 p-2 grow h-12 rounded bg-blue-400 hover:bg-blue-600 text-white"
+            onClick={formatChinese}
           >
-            插入空格
-          </Checkbox>
-          <Checkbox
-            desc="在数字之间插入 , 如 1000 -> 1,000"
-            checked={config.numeric}
-            onChange={onChangeConfigWithName('numeric')}
+            Format 🎨
+          </button>
+          <button
+            className="my-2 p-2 aspect-square h-12 rounded bg-gray-300 hover:bg-gray-700 text-white"
+            onClick={formatNumber}
           >
-            格式化数字
-          </Checkbox>
-          <Checkbox
-            checked={config.ellipsis}
-            onChange={onChangeConfigWithName('ellipsis')}
-            desc="将不规范的 ... 替换成 ……"
-          >
-            替换省略号
-          </Checkbox>
+            ⚙️
+          </button>
         </div>
-      </ul>
+        <ol className="flex flex-col gap-2">
+          <li>
+            <Checkbox
+              desc="在中英文之间添加空格"
+              onChange={onChangeConfigWithName('space')}
+              checked={config.space}
+            >
+              插入空格
+            </Checkbox>
+          </li>
+          <li>
+            <Checkbox
+              desc="在数字之间插入 , 如 1000 -> 1,000"
+              checked={config.numeric}
+              onChange={onChangeConfigWithName('numeric')}
+            >
+              格式化数字
+            </Checkbox>
+          </li>
+          <li>
+            <Checkbox
+              checked={config.ellipsis}
+              onChange={onChangeConfigWithName('ellipsis')}
+              desc="将不规范的 ... 替换成 ……"
+            >
+              替换省略号
+            </Checkbox>
+          </li>
+        </ol>
+      </div>
     </section>
   );
 };
