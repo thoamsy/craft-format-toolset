@@ -2,31 +2,15 @@ import * as React from 'react';
 
 export const Checkbox = ({
   children: label,
-  name,
-  defaultChecked = false,
+  onChange,
+  checked,
   desc,
 }: {
   children: React.ReactNode;
-  defaultChecked?: boolean;
-  name: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  checked: boolean;
   desc?: string;
 }) => {
-  const [checked, setChecked] = React.useState(defaultChecked);
-  React.useEffect(() => {
-    void (async function () {
-      const saved = await craft.storageApi.get(name);
-      if (saved.data) {
-        setChecked(saved.data === '1');
-      }
-    })();
-  }, []);
-
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = e.target.checked;
-    craft.storageApi.put(name, newValue ? '1' : '0');
-    setChecked(newValue);
-  };
-
   return (
     <label className="flex items-center">
       <input
