@@ -3,8 +3,8 @@
   "name": "Format Toolset",
   "fileName": "format-toolset",
   "author": "Thomas Yang",
-  "author-email": "c6swift@icloud.com",
-  "description": "Format Number with comma. Like change the 1000 to 1,000",
+  "author-email": "c6swift@gmail.com",
+  "description": "格式文本小工具。比如将 1000000 转换为 1,000,000；在中英文之间插入空格",
   "api": "0.0.4",
   "main": "index.html"
 }

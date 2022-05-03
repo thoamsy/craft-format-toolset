@@ -2,7 +2,11 @@ import { CraftTextBlock } from '@craftdocs/craft-extension-api';
 
 const formater = new Intl.NumberFormat('en-US', { style: 'decimal' });
 
-function withFormat(transform: (origin: string) => string) {
+const withEnable =
+  (transform: (s: string) => string) => (isEnable: boolean) => (text: string) =>
+    isEnable ? transform(text) : text;
+
+export function withFormat(transform: (origin: string) => string) {
   return async () => {
     const page = await craft.dataApi.getCurrentPage().then((rep) => rep.data);
     if (!page) {
@@ -36,15 +40,14 @@ function withFormat(transform: (origin: string) => string) {
   };
 }
 
-export const formatNumber = withFormat((text) =>
+const insertCommaForNumber = (text: string) =>
   text.replace(/(\d|,)+/g, (match) => {
     const mayBeNumber = Number(match.replaceAll(',', ''));
     if (Number.isNaN(mayBeNumber)) {
       return match;
     }
     return formater.format(mayBeNumber);
-  }),
-);
+  });
 
 const testChineseAdjacentEnglish =
   /(([0-9a-zA-Z]+)(\p{sc=Han}+))|((\p{sc=Han}+)([0-9a-zA-Z]+))/gu;
@@ -63,4 +66,9 @@ const insertWhitespace = (str = ''): string => {
   );
 };
 
-export const formatChinese = withFormat(insertWhitespace);
+const replaceAlonePointToEllipsis = (str = '') =>
+  str.replace(/(\.|。){3}/, '…');
+
+export const formatWhitespace = withEnable(insertWhitespace);
+export const formatComma = withEnable(insertCommaForNumber);
+export const formatEllipsis = withEnable(replaceAlonePointToEllipsis);
