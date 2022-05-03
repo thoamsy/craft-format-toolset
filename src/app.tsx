@@ -1,9 +1,15 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import compose from 'lodash/flowRight';
 
 import { Checkbox } from './components/Checkbox';
 
-import { formatChinese, formatNumber } from './format-utils';
+import {
+  formatWhitespace,
+  formatComma,
+  formatEllipsis,
+  withFormat,
+} from './format-utils';
 
 const configNames = ['space', 'numeric', 'ellipsis'] as const;
 type ConfigKey = typeof configNames[number];
@@ -55,16 +61,16 @@ const App: React.FC<{}> = () => {
       <div className="my-8">
         <div className="flex gap-2">
           <button
-            className="my-2 p-2 grow h-12 rounded bg-blue-400 hover:bg-blue-600 text-white"
-            onClick={formatChinese}
+            className="my-2 p-2 grow h-10 rounded-lg bg-blue-400 hover:bg-blue-600 text-white"
+            onClick={withFormat(
+              compose(
+                formatWhitespace(config.space),
+                formatComma(config.numeric),
+                formatEllipsis(config.ellipsis),
+              ),
+            )}
           >
             Format 🎨
-          </button>
-          <button
-            className="my-2 p-2 aspect-square h-12 rounded bg-gray-300 hover:bg-gray-700 text-white"
-            onClick={formatNumber}
-          >
-            ⚙️
           </button>
         </div>
         <ol className="flex flex-col gap-2">
@@ -90,7 +96,7 @@ const App: React.FC<{}> = () => {
             <Checkbox
               checked={config.ellipsis}
               onChange={onChangeConfigWithName('ellipsis')}
-              desc="将不规范的 ... 替换成 ……"
+              desc="将不规范的 . . . or 。。。 -> …"
             >
               替换省略号
             </Checkbox>

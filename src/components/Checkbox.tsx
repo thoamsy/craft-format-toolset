@@ -30,8 +30,8 @@ export const Checkbox = ({
           "
       />
       <div className="inline-flex flex-col ml-3">
-        <span className=" capitalize">{label}</span>
-        <span className="text-sm leading-4 text-gray-400">{desc}</span>
+        <span className="capitalize text-sm">{label}</span>
+        <span className="text-xs leading-3 text-gray-400">{desc}</span>
       </div>
     </label>
   );
